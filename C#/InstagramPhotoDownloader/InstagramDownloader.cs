@@ -30,13 +30,14 @@ namespace InstagramPhotoDownloader
 
     #endregion
 
-    public class InstagramDownloader
+    public sealed class InstagramDownloader : IDisposable
     {
-        public readonly ProgressC Progress;
-        public readonly List<string> ErrorsLinks;
+        public ProgressC Progress;
+        public List<string> ErrorsLinks;
 
-        private readonly WebClient _webClient;
+        private WebClient _webClient;
         private const string StagramLink = "http://web.stagram.com";
+        private bool _disposed;
 
         public InstagramDownloader()
         {
@@ -101,24 +102,19 @@ namespace InstagramPhotoDownloader
             return photoPages;
         }
 
-        private List<string> GetPhotoLinks( IEnumerable<string> photoPages )
+        private string GetPhotoLink( string photoPage )
         {
-            List<string> photosUrls = new List<string>();
-            foreach ( string photoPage in photoPages )
+            string html = this.GetHTML( StagramLink + photoPage );
+            var h = new HtmlAgilityPack.HtmlDocument();
+            h.LoadHtml( html );
+            var photoDiv = h.DocumentNode.SelectNodes( "//div[@class='photo relative single']" );
+            if ( photoDiv != null )
             {
-                string html = this.GetHTML( StagramLink + photoPage );
-                var h = new HtmlAgilityPack.HtmlDocument();
-                h.LoadHtml( html );
-                var photoDiv = h.DocumentNode.SelectNodes( "//div[@class='photo relative single']" );
-                if ( photoDiv != null )
-                {
-                    string innerHtml = photoDiv[ 0 ].InnerHtml;
-                    Regex regex = new Regex( "(http://.*\\.jpg)" );
-                    photosUrls.Add( regex.Match( innerHtml ).Groups[ 1 ].ToString() );
-                }
-                Thread.Sleep( 1000 );
+                string innerHtml = photoDiv[ 0 ].InnerHtml;
+                Regex regex = new Regex( "(http://.*\\.jpg)" );
+                return regex.Match( innerHtml ).Groups[ 1 ].ToString();
             }
-            return photosUrls;
+            return "";
         }
 
         public void DownloadPhotos( string nickname, string savePath )
@@ -153,7 +149,15 @@ namespace InstagramPhotoDownloader
             while ( !string.IsNullOrEmpty( nextLink ) );
 
             this.Progress.Type = ProgressType.GettingImagesLinks;
-            List<string> photosLinks = this.GetPhotoLinks( photoPages );
+            List<string> photosLinks = new List<string>();
+            this.Progress.MaxProgress = photoPages.Count;
+            for ( int i = 0; i < photoPages.Count; i++ )
+            {
+                string photoPage = photoPages[ i ];
+                photosLinks.Add( this.GetPhotoLink( photoPage ) );
+                this.Progress.CurrentProgress = i + 1;
+                Thread.Sleep( 1000 );
+            }
             if ( !Directory.Exists( savePath ) )
             {
                 Directory.CreateDirectory( savePath );
@@ -165,8 +169,73 @@ namespace InstagramPhotoDownloader
                 string link = photosLinks[ i ];
                 this.DownloadFile( link, savePath );
                 this.Progress.CurrentProgress = i + 1;
-                Thread.Sleep( 1500 );
+                Thread.Sleep( 500 );
             }
         }
+
+        #region Static methods
+
+        public static string FixUserName( string url )
+        {
+            var regex = new Regex( "http(s)?://instagram\\.com/(\\w+)" );
+            Match match = regex.Match( url );
+            return match.Success ? match.Groups[ 2 ].ToString() : url;
+        }
+
+        public static bool CheckForInternetConnection()
+        {
+            try
+            {
+                using ( var client = new WebClient() )
+                {
+                    using ( var stream = client.OpenRead( "http://instagram.com/" ) )
+                    {
+                        return true;
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        #endregion
+
+        #region Members
+
+        ~InstagramDownloader()
+        {
+            Dispose( false );
+        }
+
+        public void Dispose()
+        {
+            this.Dispose( true );
+            GC.SuppressFinalize( this );
+        }
+
+        private void Dispose( bool disposing )
+        {
+            if ( !this._disposed )
+            {
+                if ( disposing )
+                {
+                    if ( this._webClient != null )
+                    {
+                        this._webClient.Dispose();
+                    }
+                }
+
+                // Indicate that the instance has been disposed.
+                this._webClient = null;
+                this.Progress = null;
+                this._disposed = true;
+                this.ErrorsLinks.Clear();
+                this.ErrorsLinks = null;
+            }
+        }
+
+        #endregion
     }
 }

@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.msMainMenu = new System.Windows.Forms.MenuStrip();
+            this.языкToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.оПрограммеToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.языкToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
             this.tbUserName = new System.Windows.Forms.TextBox();
@@ -44,6 +46,11 @@
             this.btnStart = new System.Windows.Forms.Button();
             this.tmrProgress = new System.Windows.Forms.Timer(this.components);
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tmrCheckInternet = new System.Windows.Forms.Timer(this.components);
+            this.tsmiSite = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsmiRepo = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsmiAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.msMainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,11 +65,31 @@
             // 
             // msMainMenu
             // 
+            this.msMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.языкToolStripMenuItem1,
+            this.оПрограммеToolStripMenuItem1});
             this.msMainMenu.Location = new System.Drawing.Point(0, 0);
             this.msMainMenu.Name = "msMainMenu";
             this.msMainMenu.Size = new System.Drawing.Size(289, 24);
             this.msMainMenu.TabIndex = 1;
             this.msMainMenu.Text = "menuStrip1";
+            // 
+            // языкToolStripMenuItem1
+            // 
+            this.языкToolStripMenuItem1.Name = "языкToolStripMenuItem1";
+            this.языкToolStripMenuItem1.Size = new System.Drawing.Size(45, 20);
+            this.языкToolStripMenuItem1.Text = "Язык";
+            // 
+            // оПрограммеToolStripMenuItem1
+            // 
+            this.оПрограммеToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsmiSite,
+            this.tsmiRepo,
+            this.toolStripMenuItem1,
+            this.tsmiAbout});
+            this.оПрограммеToolStripMenuItem1.Name = "оПрограммеToolStripMenuItem1";
+            this.оПрограммеToolStripMenuItem1.Size = new System.Drawing.Size(64, 20);
+            this.оПрограммеToolStripMenuItem1.Text = "Справка";
             // 
             // языкToolStripMenuItem
             // 
@@ -153,6 +180,7 @@
             // btnStart
             // 
             this.btnStart.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStart.Enabled = false;
             this.btnStart.Location = new System.Drawing.Point(3, 158);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(286, 23);
@@ -170,6 +198,37 @@
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
             this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
+            // 
+            // tmrCheckInternet
+            // 
+            this.tmrCheckInternet.Enabled = true;
+            this.tmrCheckInternet.Tick += new System.EventHandler(this.tmrCheckInternet_Tick);
+            // 
+            // tsmiSite
+            // 
+            this.tsmiSite.Name = "tsmiSite";
+            this.tsmiSite.Size = new System.Drawing.Size(161, 22);
+            this.tsmiSite.Text = "Сайт";
+            this.tsmiSite.Click += new System.EventHandler(this.tsmiSite_Click);
+            // 
+            // tsmiRepo
+            // 
+            this.tsmiRepo.Name = "tsmiRepo";
+            this.tsmiRepo.Size = new System.Drawing.Size(161, 22);
+            this.tsmiRepo.Text = "Репозиторий";
+            this.tsmiRepo.Click += new System.EventHandler(this.tsmiRepo_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(158, 6);
+            // 
+            // tsmiAbout
+            // 
+            this.tsmiAbout.Name = "tsmiAbout";
+            this.tsmiAbout.Size = new System.Drawing.Size(161, 22);
+            this.tsmiAbout.Text = "О программе...";
+            this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
             // FrmMain
             // 
@@ -221,6 +280,13 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Timer tmrProgress;
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem языкToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem1;
+        private System.Windows.Forms.Timer tmrCheckInternet;
+        private System.Windows.Forms.ToolStripMenuItem tsmiSite;
+        private System.Windows.Forms.ToolStripMenuItem tsmiRepo;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem tsmiAbout;
 
     }
 }
