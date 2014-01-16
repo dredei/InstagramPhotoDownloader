@@ -199,5 +199,13 @@ namespace InstagramPhotoDownloader
         {
             this.ChangeLanguage( "ru-RU" );
         }
+
+        private void btnSelectDir_Click( object sender, EventArgs e )
+        {
+            if ( fbd1.ShowDialog() == DialogResult.OK )
+            {
+                tbSavePath.Text = fbd1.SelectedPath;
+            }
+        }
     }
 }

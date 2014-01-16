@@ -54,74 +54,75 @@
             this.tmrCheckInternet = new System.Windows.Forms.Timer(this.components);
             this.lblUserName = new System.Windows.Forms.Label();
             this.lblSavePath = new System.Windows.Forms.Label();
+            this.fbd1 = new System.Windows.Forms.FolderBrowserDialog();
             this.msMainMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // msMainMenu
             // 
-            resources.ApplyResources(this.msMainMenu, "msMainMenu");
             this.msMainMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.языкToolStripMenuItem1,
             this.оПрограммеToolStripMenuItem1});
+            resources.ApplyResources(this.msMainMenu, "msMainMenu");
             this.msMainMenu.Name = "msMainMenu";
             // 
             // языкToolStripMenuItem1
             // 
-            resources.ApplyResources(this.языкToolStripMenuItem1, "языкToolStripMenuItem1");
             this.языкToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiEnglishLang,
             this.tsmiRusLang});
             this.языкToolStripMenuItem1.Name = "языкToolStripMenuItem1";
+            resources.ApplyResources(this.языкToolStripMenuItem1, "языкToolStripMenuItem1");
             // 
             // tsmiEnglishLang
             // 
-            resources.ApplyResources(this.tsmiEnglishLang, "tsmiEnglishLang");
             this.tsmiEnglishLang.Name = "tsmiEnglishLang";
+            resources.ApplyResources(this.tsmiEnglishLang, "tsmiEnglishLang");
             this.tsmiEnglishLang.Click += new System.EventHandler(this.tsmiEnglishLang_Click);
             // 
             // tsmiRusLang
             // 
-            resources.ApplyResources(this.tsmiRusLang, "tsmiRusLang");
             this.tsmiRusLang.Name = "tsmiRusLang";
+            resources.ApplyResources(this.tsmiRusLang, "tsmiRusLang");
             this.tsmiRusLang.Click += new System.EventHandler(this.tsmiRusLang_Click);
             // 
             // оПрограммеToolStripMenuItem1
             // 
-            resources.ApplyResources(this.оПрограммеToolStripMenuItem1, "оПрограммеToolStripMenuItem1");
             this.оПрограммеToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmiSite,
             this.tsmiRepo,
             this.toolStripMenuItem1,
             this.tsmiAbout});
             this.оПрограммеToolStripMenuItem1.Name = "оПрограммеToolStripMenuItem1";
+            resources.ApplyResources(this.оПрограммеToolStripMenuItem1, "оПрограммеToolStripMenuItem1");
             // 
             // tsmiSite
             // 
-            resources.ApplyResources(this.tsmiSite, "tsmiSite");
             this.tsmiSite.Name = "tsmiSite";
+            resources.ApplyResources(this.tsmiSite, "tsmiSite");
             this.tsmiSite.Click += new System.EventHandler(this.tsmiSite_Click);
             // 
             // tsmiRepo
             // 
-            resources.ApplyResources(this.tsmiRepo, "tsmiRepo");
             this.tsmiRepo.Name = "tsmiRepo";
+            resources.ApplyResources(this.tsmiRepo, "tsmiRepo");
             this.tsmiRepo.Click += new System.EventHandler(this.tsmiRepo_Click);
             // 
             // toolStripMenuItem1
             // 
-            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            resources.ApplyResources(this.toolStripMenuItem1, "toolStripMenuItem1");
             // 
             // tsmiAbout
             // 
-            resources.ApplyResources(this.tsmiAbout, "tsmiAbout");
             this.tsmiAbout.Name = "tsmiAbout";
+            resources.ApplyResources(this.tsmiAbout, "tsmiAbout");
             this.tsmiAbout.Click += new System.EventHandler(this.tsmiAbout_Click);
             // 
             // языкToolStripMenuItem
             // 
-            resources.ApplyResources(this.языкToolStripMenuItem, "языкToolStripMenuItem");
             this.языкToolStripMenuItem.Name = "языкToolStripMenuItem";
+            resources.ApplyResources(this.языкToolStripMenuItem, "языкToolStripMenuItem");
             // 
             // tbUserName
             // 
@@ -135,10 +136,11 @@
             // 
             // btnSelectDir
             // 
-            resources.ApplyResources(this.btnSelectDir, "btnSelectDir");
             this.btnSelectDir.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.btnSelectDir, "btnSelectDir");
             this.btnSelectDir.Name = "btnSelectDir";
             this.btnSelectDir.UseVisualStyleBackColor = true;
+            this.btnSelectDir.Click += new System.EventHandler(this.btnSelectDir_Click);
             // 
             // lblInfo
             // 
@@ -170,8 +172,8 @@
             // 
             // btnStart
             // 
-            resources.ApplyResources(this.btnStart, "btnStart");
             this.btnStart.Cursor = System.Windows.Forms.Cursors.Hand;
+            resources.ApplyResources(this.btnStart, "btnStart");
             this.btnStart.Name = "btnStart";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -182,8 +184,8 @@
             // 
             // оПрограммеToolStripMenuItem
             // 
-            resources.ApplyResources(this.оПрограммеToolStripMenuItem, "оПрограммеToolStripMenuItem");
             this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
+            resources.ApplyResources(this.оПрограммеToolStripMenuItem, "оПрограммеToolStripMenuItem");
             // 
             // tmrCheckInternet
             // 
@@ -254,6 +256,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiRusLang;
         private System.Windows.Forms.Label lblUserName;
         private System.Windows.Forms.Label lblSavePath;
+        private System.Windows.Forms.FolderBrowserDialog fbd1;
 
     }
 }
