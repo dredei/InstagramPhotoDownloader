@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using ExtensionMethods;
+using Ini;
 using Microsoft.Win32;
 
 namespace InstagramPhotoDownloader
@@ -18,12 +20,53 @@ namespace InstagramPhotoDownloader
         private Thread _thread;
         private Thread _checkInternetThread;
         private InstagramDownloader _instDownloader;
+        private string _language = "en-GB";
         private readonly Version _version = Version.Parse( "1.0.0" );
 
         public FrmMain()
         {
+            this.LoadSettings();
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo( this._language );
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
+            tbSavePath.Text = Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ) + "\\InstagramPhotoDownloader";
+        }
+
+        private void ChangeLanguage( string lang )
+        {
+            this._language = lang;
+            this.SaveSettings();
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo( this._language );
+            DialogResult res = MessageBox.Show( strings.RestartApp, strings.Warning, MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning );
+            if ( res == DialogResult.Yes )
+            {
+                Application.Restart();
+            }
+        }
+
+        private void SaveSettings()
+        {
+            try
+            {
+                var ini = new IniFile( Application.StartupPath + @"\Settings.ini" );
+                ini.Write( "Lang", this._language, "Options" );
+            }
+            catch
+            {
+            }
+        }
+
+        private void LoadSettings()
+        {
+            try
+            {
+                var ini = new IniFile( Application.StartupPath + @"\Settings.ini" );
+                this._language = ini.Read( "Lang", "Options", this._language );
+            }
+            catch
+            {
+            }
         }
 
         private void Work()
@@ -33,7 +76,7 @@ namespace InstagramPhotoDownloader
             tmrProgress.Stop();
             this.DisEnControls();
             MessageBox.Show( strings.Done, strings.Information, MessageBoxButtons.OK, MessageBoxIcon.Information );
-            //instDownloader.Dispose();
+            _instDownloader.Dispose();
         }
 
         private void DisEnControls()
@@ -105,6 +148,11 @@ namespace InstagramPhotoDownloader
             {
                 this._thread.Abort();
             }
+            if ( this._checkInternetThread != null )
+            {
+                this._checkInternetThread.Abort();
+            }
+            this.SaveSettings();
         }
 
         private void tmrCheckInternet_Tick( object sender, EventArgs e )
@@ -140,6 +188,16 @@ namespace InstagramPhotoDownloader
         {
             MessageBox.Show( strings.AboutInfo.FixNewLines() + this._version, strings.About, MessageBoxButtons.OK,
                 MessageBoxIcon.Information );
+        }
+
+        private void tsmiEnglishLang_Click( object sender, EventArgs e )
+        {
+            this.ChangeLanguage( "en-GB" );
+        }
+
+        private void tsmiRusLang_Click( object sender, EventArgs e )
+        {
+            this.ChangeLanguage( "ru-RU" );
         }
     }
 }
