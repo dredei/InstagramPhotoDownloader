@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using Windows7.DesktopIntegration.WindowsForms;
 using ExtensionMethods;
 using Ini;
 using Microsoft.Win32;
@@ -22,6 +23,7 @@ namespace InstagramPhotoDownloader
         private InstagramDownloader _instDownloader;
         private string _language = "en-GB";
         private readonly Version _version = Version.Parse( "1.0.0" );
+        private readonly bool _possibleProgressInTaskBar;
 
         public FrmMain()
         {
@@ -30,6 +32,10 @@ namespace InstagramPhotoDownloader
             InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
             tbSavePath.Text = Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ) + "\\InstagramPhotoDownloader";
+            if ( Environment.OSVersion.Version >= new Version( 6, 1 ) ) // if version current version >= win7
+            {
+                this._possibleProgressInTaskBar = true;
+            }
         }
 
         private void ChangeLanguage( string lang )
@@ -136,10 +142,10 @@ namespace InstagramPhotoDownloader
                 this.lblImgErrors.Text = strings.Errors + this._instDownloader.ErrorsLinks.Count;
             }
             this.AutoPosLabels();
-            //if ( this._possibleProgressInTaskBar )
-            //{
-            //    this.pb1.SetTaskbarProgress();
-            //}
+            if ( this._possibleProgressInTaskBar )
+            {
+                this.pb1.SetTaskbarProgress();
+            }
         }
 
         private void FrmMain_FormClosing( object sender, FormClosingEventArgs e )
