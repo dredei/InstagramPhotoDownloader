@@ -18,7 +18,7 @@ namespace InstagramPhotoDownloader
         private Thread _thread;
         private Thread _checkInternetThread;
         private InstagramDownloader _instDownloader;
-        private readonly Version _version = Version.Parse( "1.0.3" );
+        private readonly Version _version = Version.Parse( "1.0.0" );
 
         public FrmMain()
         {
