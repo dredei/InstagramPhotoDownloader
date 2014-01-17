@@ -184,7 +184,7 @@ namespace InstagramPhotoDownloader
 
         public static string FixUserName( string url )
         {
-            var regex = new Regex( "http(s)?://instagram\\.com/(\\w+)" );
+            var regex = new Regex( "http(s)?://instagram\\.com/(\\w+)(#)?" );
             Match match = regex.Match( url );
             return match.Success ? match.Groups[ 2 ].ToString() : url;
         }
