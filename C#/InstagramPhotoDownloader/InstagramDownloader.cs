@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -48,7 +49,7 @@ namespace InstagramPhotoDownloader
 
         private string GetHTML( string url )
         {
-            bool exception;
+            bool exception = false;
             string html = string.Empty;
             do
             {
@@ -57,10 +58,13 @@ namespace InstagramPhotoDownloader
                     html = this._webClient.DownloadString( url );
                     exception = false;
                 }
-                catch
+                catch ( Exception ex )
                 {
-                    exception = true;
-                    Thread.Sleep( 3000 );
+                    if ( ex.Message.IndexOf( "404" ) == 0 )
+                    {
+                        exception = true;
+                        Thread.Sleep( 3000 );
+                    }
                 }
             }
             while ( exception );
