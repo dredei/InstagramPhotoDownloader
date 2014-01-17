@@ -121,51 +121,6 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tsmiEnglishLang.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 22</value>
-  </data>
-  <data name="tsmiEnglishLang.Text" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="tsmiRusLang.Size" type="System.Drawing.Size, System.Drawing">
-    <value>119, 22</value>
-  </data>
-  <data name="tsmiRusLang.Text" xml:space="preserve">
-    <value>Русский</value>
-  </data>
-  <data name="языкToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>45, 20</value>
-  </data>
-  <data name="языкToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Язык</value>
-  </data>
-  <data name="tsmiSite.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
-  </data>
-  <data name="tsmiSite.Text" xml:space="preserve">
-    <value>Сайт</value>
-  </data>
-  <data name="tsmiRepo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
-  </data>
-  <data name="tsmiRepo.Text" xml:space="preserve">
-    <value>Репозиторий</value>
-  </data>
-  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>158, 6</value>
-  </data>
-  <data name="tsmiAbout.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 22</value>
-  </data>
-  <data name="tsmiAbout.Text" xml:space="preserve">
-    <value>О программе...</value>
-  </data>
-  <data name="оПрограммеToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 20</value>
-  </data>
-  <data name="оПрограммеToolStripMenuItem1.Text" xml:space="preserve">
-    <value>Справка</value>
-  </data>
   <data name="msMainMenu.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 0</value>
   </data>
@@ -190,6 +145,51 @@
   </data>
   <data name="&gt;&gt;msMainMenu.ZOrder" xml:space="preserve">
     <value>11</value>
+  </data>
+  <data name="языкToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>45, 20</value>
+  </data>
+  <data name="языкToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Язык</value>
+  </data>
+  <data name="tsmiEnglishLang.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 22</value>
+  </data>
+  <data name="tsmiEnglishLang.Text" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="tsmiRusLang.Size" type="System.Drawing.Size, System.Drawing">
+    <value>119, 22</value>
+  </data>
+  <data name="tsmiRusLang.Text" xml:space="preserve">
+    <value>Русский</value>
+  </data>
+  <data name="оПрограммеToolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 20</value>
+  </data>
+  <data name="оПрограммеToolStripMenuItem1.Text" xml:space="preserve">
+    <value>Справка</value>
+  </data>
+  <data name="tsmiSite.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="tsmiSite.Text" xml:space="preserve">
+    <value>Сайт</value>
+  </data>
+  <data name="tsmiRepo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="tsmiRepo.Text" xml:space="preserve">
+    <value>Репозиторий</value>
+  </data>
+  <data name="toolStripMenuItem1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>158, 6</value>
+  </data>
+  <data name="tsmiAbout.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 22</value>
+  </data>
+  <data name="tsmiAbout.Text" xml:space="preserve">
+    <value>О программе...</value>
   </data>
   <data name="языкToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>45, 20</value>

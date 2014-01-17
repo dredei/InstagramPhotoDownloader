@@ -229,5 +229,21 @@ namespace InstagramPhotoDownloader
                 tbSavePath.Text = fbd1.SelectedPath;
             }
         }
+
+        private void tbUserName_KeyDown( object sender, KeyEventArgs e )
+        {
+            if ( e.KeyData == Keys.Enter )
+            {
+                btnStart.PerformClick();
+            }
+        }
+
+        private void tbSavePath_KeyDown( object sender, KeyEventArgs e )
+        {
+            if ( e.KeyData == Keys.Enter )
+            {
+                btnStart.PerformClick();
+            }
+        }
     }
 }
