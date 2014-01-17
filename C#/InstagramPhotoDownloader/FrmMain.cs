@@ -82,6 +82,21 @@ namespace InstagramPhotoDownloader
             tmrProgress.Stop();
             this.DisEnControls();
             MessageBox.Show( strings.Done, strings.Information, MessageBoxButtons.OK, MessageBoxIcon.Information );
+            if ( this._instDownloader.ErrorsLinks.Count > 0 )
+            {
+                DialogResult dr = MessageBox.Show( strings.CopyToClipboard, strings.Error, MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question );
+                if ( dr != DialogResult.Yes )
+                {
+                    return;
+                }
+                StringBuilder sb = new StringBuilder();
+                foreach ( string s in this._instDownloader.ErrorsLinks )
+                {
+                    sb.AppendLine( s );
+                }
+                Clipboard.SetText( sb.ToString() );
+            }
             _instDownloader.Dispose();
         }
 
@@ -126,7 +141,7 @@ namespace InstagramPhotoDownloader
                         break;
 
                     case ProgressType.GettingImagesLinks:
-                        this.lblInfo.Text = string.Format( "Получаем ссылки изображений ({0}/{1})...", progress.CurrentProgress, progress.MaxProgress );
+                        this.lblInfo.Text = string.Format( strings.GettingImagesLinks, progress.CurrentProgress, progress.MaxProgress );
                         this.pb1.Style = ProgressBarStyle.Marquee;
                         break;
 

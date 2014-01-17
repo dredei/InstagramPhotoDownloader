@@ -150,6 +150,9 @@
   <data name="GettingImages" xml:space="preserve">
     <value>Получаем изображения (страница {0})...</value>
   </data>
+  <data name="GettingImagesLinks" xml:space="preserve">
+    <value>Получаем ссылки изображений ({0}/{1})...</value>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Информация</value>
   </data>
@@ -160,10 +163,7 @@
     <value>Приложение будет перезапущено! Продолжить?</value>
   </data>
   <data name="UnableAccess" xml:space="preserve">
-    <value>Невозможно получить доступ к Twitter!</value>
-  </data>
-  <data name="UpdateIe" xml:space="preserve">
-    <value>Обновите IE до версии 8!</value>
+    <value>Невозможно получить доступ к Instagram!</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Предупреждение</value>

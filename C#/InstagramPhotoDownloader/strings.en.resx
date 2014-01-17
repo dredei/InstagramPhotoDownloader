@@ -150,6 +150,9 @@
   <data name="GettingImages" xml:space="preserve">
     <value>Getting images (page {0})...</value>
   </data>
+  <data name="GettingImagesLinks" xml:space="preserve">
+    <value>Getting image links ({0}/{1})...</value>
+  </data>
   <data name="Information" xml:space="preserve">
     <value>Information</value>
   </data>
@@ -160,10 +163,7 @@
     <value>The application will be restarted! Continue?</value>
   </data>
   <data name="UnableAccess" xml:space="preserve">
-    <value>Unable to access Twitter!</value>
-  </data>
-  <data name="UpdateIe" xml:space="preserve">
-    <value>Update IE to version 8!</value>
+    <value>Unable to access Instagram!</value>
   </data>
   <data name="Warning" xml:space="preserve">
     <value>Warning</value>

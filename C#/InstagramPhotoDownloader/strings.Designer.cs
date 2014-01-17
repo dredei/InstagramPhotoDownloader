@@ -160,6 +160,15 @@ namespace InstagramPhotoDownloader {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на Получаем ссылки изображений ({0}/{1})....
+        /// </summary>
+        internal static string GettingImagesLinks {
+            get {
+                return ResourceManager.GetString("GettingImagesLinks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Информация.
         /// </summary>
         internal static string Information {
@@ -187,20 +196,11 @@ namespace InstagramPhotoDownloader {
         }
         
         /// <summary>
-        ///   Ищет локализованную строку, похожую на Невозможно получить доступ к Twitter!.
+        ///   Ищет локализованную строку, похожую на Невозможно получить доступ к Instagram!.
         /// </summary>
         internal static string UnableAccess {
             get {
                 return ResourceManager.GetString("UnableAccess", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Ищет локализованную строку, похожую на Обновите IE до версии 8!.
-        /// </summary>
-        internal static string UpdateIe {
-            get {
-                return ResourceManager.GetString("UpdateIe", resourceCulture);
             }
         }
         
