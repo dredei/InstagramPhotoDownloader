@@ -162,8 +162,9 @@ namespace InstagramPhotoDownloader
             {
                 Directory.CreateDirectory( savePath );
             }
-            this.Progress.Type = ProgressType.DownloadingImages;
+            this.Progress.CurrentProgress = 0;
             this.Progress.MaxProgress = photosLinks.Count;
+            this.Progress.Type = ProgressType.DownloadingImages;
             for ( int i = 0; i < photosLinks.Count; i++ )
             {
                 string link = photosLinks[ i ];
