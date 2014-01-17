@@ -85,16 +85,15 @@ namespace InstagramPhotoDownloader
             {
                 DialogResult dr = MessageBox.Show( strings.CopyToClipboard, strings.Error, MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question );
-                if ( dr != DialogResult.Yes )
+                if ( dr == DialogResult.Yes )
                 {
-                    return;
+                    StringBuilder sb = new StringBuilder();
+                    foreach ( string s in this._instDownloader.ErrorsLinks )
+                    {
+                        sb.AppendLine( s );
+                    }
+                    Clipboard.SetText( sb.ToString() );
                 }
-                StringBuilder sb = new StringBuilder();
-                foreach ( string s in this._instDownloader.ErrorsLinks )
-                {
-                    sb.AppendLine( s );
-                }
-                Clipboard.SetText( sb.ToString() );
             }
             pb1.Value = 0;
             pb1.SetTaskbarProgress();
