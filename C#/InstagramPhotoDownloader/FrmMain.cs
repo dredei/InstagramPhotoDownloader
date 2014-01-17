@@ -223,6 +223,7 @@ namespace InstagramPhotoDownloader
 
         private void btnSelectDir_Click( object sender, EventArgs e )
         {
+            fbd1.SelectedPath = tbSavePath.Text;
             if ( fbd1.ShowDialog() == DialogResult.OK )
             {
                 tbSavePath.Text = fbd1.SelectedPath;
