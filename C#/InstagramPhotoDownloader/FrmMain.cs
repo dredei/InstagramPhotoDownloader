@@ -95,8 +95,8 @@ namespace InstagramPhotoDownloader
                     Clipboard.SetText( sb.ToString() );
                 }
             }
-            pb1.Value = 0;
-            pb1.SetTaskbarProgress();
+            this.pb1.Value = 0;
+            this.pb1.SetTaskbarProgress();
             this._instDownloader.Dispose();
             this._instDownloader = null;
             GC.Collect();
