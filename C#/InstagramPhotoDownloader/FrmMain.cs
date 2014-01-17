@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
+﻿#region Using
+
+using System;
 using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using Windows7.DesktopIntegration.WindowsForms;
 using ExtensionMethods;
 using Ini;
-using Microsoft.Win32;
+
+#endregion
 
 namespace InstagramPhotoDownloader
 {
@@ -29,9 +27,10 @@ namespace InstagramPhotoDownloader
         {
             this.LoadSettings();
             Thread.CurrentThread.CurrentUICulture = new CultureInfo( this._language );
-            InitializeComponent();
+            this.InitializeComponent();
             CheckForIllegalCrossThreadCalls = false;
-            tbSavePath.Text = Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ) + "\\InstagramPhotoDownloader";
+            this.tbSavePath.Text = Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ) +
+                                   "\\InstagramPhotoDownloader";
             if ( Environment.OSVersion.Version >= new Version( 6, 1 ) ) // if version current version >= win7
             {
                 this._possibleProgressInTaskBar = true;
@@ -77,9 +76,9 @@ namespace InstagramPhotoDownloader
 
         private void Work()
         {
-            _instDownloader = new InstagramDownloader();
-            _instDownloader.DownloadPhotos( tbUserName.Text, tbSavePath.Text );
-            tmrProgress.Stop();
+            this._instDownloader = new InstagramDownloader();
+            this._instDownloader.DownloadPhotos( this.tbUserName.Text, this.tbSavePath.Text );
+            this.tmrProgress.Stop();
             this.DisEnControls();
             MessageBox.Show( strings.Done, strings.Information, MessageBoxButtons.OK, MessageBoxIcon.Information );
             if ( this._instDownloader.ErrorsLinks.Count > 0 )
@@ -97,7 +96,11 @@ namespace InstagramPhotoDownloader
                 }
                 Clipboard.SetText( sb.ToString() );
             }
-            _instDownloader.Dispose();
+            pb1.Value = 0;
+            pb1.SetTaskbarProgress();
+            this._instDownloader.Dispose();
+            this._instDownloader = null;
+            GC.Collect();
         }
 
         private void DisEnControls()
@@ -116,16 +119,16 @@ namespace InstagramPhotoDownloader
 
         private void btnStart_Click( object sender, EventArgs e )
         {
-            if ( string.IsNullOrEmpty( tbUserName.Text ) || string.IsNullOrEmpty( tbSavePath.Text ) )
+            if ( string.IsNullOrEmpty( this.tbUserName.Text ) || string.IsNullOrEmpty( this.tbSavePath.Text ) )
             {
                 MessageBox.Show( strings.FillTheFields, strings.Error, MessageBoxButtons.OK, MessageBoxIcon.Error );
                 return;
             }
-            tbUserName.Text = InstagramDownloader.FixUserName( tbUserName.Text );
+            this.tbUserName.Text = InstagramDownloader.FixUserName( this.tbUserName.Text );
             this.DisEnControls();
             this._thread = new Thread( this.Work );
             this._thread.Start();
-            tmrProgress.Start();
+            this.tmrProgress.Start();
         }
 
         private void tmrProgress_Tick( object sender, EventArgs e )
@@ -141,7 +144,8 @@ namespace InstagramPhotoDownloader
                         break;
 
                     case ProgressType.GettingImagesLinks:
-                        this.lblInfo.Text = string.Format( strings.GettingImagesLinks, progress.CurrentProgress, progress.MaxProgress );
+                        this.lblInfo.Text = string.Format( strings.GettingImagesLinks, progress.CurrentProgress,
+                            progress.MaxProgress );
                         this.pb1.Style = ProgressBarStyle.Marquee;
                         break;
 
@@ -223,10 +227,10 @@ namespace InstagramPhotoDownloader
 
         private void btnSelectDir_Click( object sender, EventArgs e )
         {
-            fbd1.SelectedPath = tbSavePath.Text;
-            if ( fbd1.ShowDialog() == DialogResult.OK )
+            this.fbd1.SelectedPath = this.tbSavePath.Text;
+            if ( this.fbd1.ShowDialog() == DialogResult.OK )
             {
-                tbSavePath.Text = fbd1.SelectedPath;
+                this.tbSavePath.Text = this.fbd1.SelectedPath;
             }
         }
 
@@ -234,7 +238,7 @@ namespace InstagramPhotoDownloader
         {
             if ( e.KeyData == Keys.Enter )
             {
-                btnStart.PerformClick();
+                this.btnStart.PerformClick();
             }
         }
 
@@ -242,7 +246,7 @@ namespace InstagramPhotoDownloader
         {
             if ( e.KeyData == Keys.Enter )
             {
-                btnStart.PerformClick();
+                this.btnStart.PerformClick();
             }
         }
     }

@@ -1,16 +1,18 @@
-﻿using System;
+﻿#region Using
+
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Runtime.InteropServices;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using HtmlAgilityPack;
 
+#endregion
+
 namespace InstagramPhotoDownloader
 {
+
     #region Additional classes
 
     public class ProgressC
@@ -211,7 +213,7 @@ namespace InstagramPhotoDownloader
 
         ~InstagramDownloader()
         {
-            Dispose( false );
+            this.Dispose( false );
         }
 
         public void Dispose()
