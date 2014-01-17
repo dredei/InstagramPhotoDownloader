@@ -126,6 +126,7 @@ namespace InstagramPhotoDownloader
             this.tbUserName.Text = InstagramDownloader.FixUserName( this.tbUserName.Text );
             this.DisEnControls();
             this._thread = new Thread( this.Work );
+            this._thread.SetApartmentState( ApartmentState.STA );
             this._thread.Start();
             this.tmrProgress.Start();
         }

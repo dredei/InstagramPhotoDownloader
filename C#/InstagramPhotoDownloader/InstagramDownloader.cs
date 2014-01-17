@@ -126,6 +126,7 @@ namespace InstagramPhotoDownloader
         public void DownloadPhotos( string nickname, string savePath )
         {
             this.ErrorsLinks.Clear();
+            this.ErrorsLinks.Add( "http://test" );
             string nextLink = StagramLink + "/n/" + nickname + "/?vm=grid";
             List<string> photoPages = new List<string>();
             int page = 0;
