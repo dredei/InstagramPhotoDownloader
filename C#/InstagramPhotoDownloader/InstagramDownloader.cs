@@ -160,7 +160,11 @@ namespace InstagramPhotoDownloader
             for ( int i = 0; i < photoPages.Count; i++ )
             {
                 string photoPage = photoPages[ i ];
-                photosLinks.Add( this.GetPhotoLink( photoPage ) );
+                string photoLink = this.GetPhotoLink( photoPage );
+                if ( !string.IsNullOrEmpty( photoLink ) )
+                {
+                    photosLinks.Add( photoLink );
+                }
                 this.Progress.CurrentProgress = i + 1;
                 Thread.Sleep( 1000 );
             }
