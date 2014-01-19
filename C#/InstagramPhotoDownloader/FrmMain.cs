@@ -96,6 +96,7 @@ namespace InstagramPhotoDownloader
                 }
             }
             this.pb1.Value = 0;
+            this.pb1.Style = ProgressBarStyle.Blocks;
             this.pb1.SetTaskbarProgress();
             this._instDownloader.Dispose();
             this._instDownloader = null;
