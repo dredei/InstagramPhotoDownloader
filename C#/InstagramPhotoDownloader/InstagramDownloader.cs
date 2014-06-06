@@ -6,6 +6,7 @@ using System.IO;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Threading;
+using ExtensionMethods;
 using HtmlAgilityPack;
 
 #endregion
@@ -57,6 +58,8 @@ namespace InstagramPhotoDownloader
             {
                 try
                 {
+                    this._webClient.Headers[ HttpRequestHeader.UserAgent ] =
+                        "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.2 (KHTML, like Gecko) Chrome/15.0.874.121 Safari/535.2";
                     html = this._webClient.DownloadString( url );
                     exception = false;
                 }
@@ -91,17 +94,16 @@ namespace InstagramPhotoDownloader
         private IEnumerable<string> GetPhotoPages( HtmlAgilityPack.HtmlDocument document )
         {
             List<string> photoPages = new List<string>();
-            var photosElements = document.DocumentNode.SelectNodes( "//div[@class='photo']" );
+            var photosElements =
+                document.DocumentNode.SelectNodes( "//div[@class='photobox']//a[@class='mainimg small']" );
             if ( photosElements != null )
             {
                 foreach ( HtmlNode photo in photosElements )
                 {
-                    string innerHtml = photo.InnerHtml;
-                    string photoPage = innerHtml.Remove( 0, innerHtml.IndexOf( "\"" ) + 1 );
-                    photoPage = photoPage.Substring( 0, photoPage.IndexOf( "\"" ) );
-                    if ( photoPage != "hasvideo grid" )
+                    string href = photo.GetAttributeValue( "href", "" );
+                    if ( !href.IsNullOrEmpty() && !photo.InnerHtml.Contains( "playvideo grid" ) )
                     {
-                        photoPages.Add( photoPage );
+                        photoPages.Add( href );
                     }
                 }
             }
@@ -113,7 +115,7 @@ namespace InstagramPhotoDownloader
             string html = this.GetHTML( StagramLink + photoPage );
             var h = new HtmlAgilityPack.HtmlDocument();
             h.LoadHtml( html );
-            var photoDiv = h.DocumentNode.SelectNodes( "//div[@class='photo relative single']" );
+            var photoDiv = h.DocumentNode.SelectNodes( "//div[@class='photobox single']" );
             if ( photoDiv != null )
             {
                 string innerHtml = photoDiv[ 0 ].InnerHtml;
