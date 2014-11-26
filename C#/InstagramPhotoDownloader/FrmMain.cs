@@ -20,7 +20,7 @@ namespace InstagramPhotoDownloader
         private Thread _checkInternetThread;
         private InstagramDownloader _instDownloader;
         private string _language = "en-GB";
-        private readonly Version _version = Version.Parse( "1.0.1" );
+        private readonly Version _version = Version.Parse( "1.0.2" );
         private readonly bool _possibleProgressInTaskBar;
 
         public FrmMain()

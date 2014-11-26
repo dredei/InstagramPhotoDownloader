@@ -76,9 +76,9 @@ namespace InstagramPhotoDownloader
             return html;
         }
 
-        private void DownloadFile( string fileUrl, string savePath )
+        private void DownloadFile( string fileUrl, string savePath, int index )
         {
-            string fileName = savePath + "\\" + Path.GetFileName( fileUrl );
+            string fileName = savePath + "\\" + index + Path.GetExtension( fileUrl );
             try
             {
                 this._webClient.DownloadFile( fileUrl, fileName );
@@ -183,7 +183,7 @@ namespace InstagramPhotoDownloader
             for ( int i = 0; i < photosLinks.Count; i++ )
             {
                 string link = photosLinks[ i ];
-                this.DownloadFile( link, savePath );
+                this.DownloadFile( link, savePath, i + 1 );
                 this.Progress.CurrentProgress = i + 1;
                 Thread.Sleep( 500 );
             }
