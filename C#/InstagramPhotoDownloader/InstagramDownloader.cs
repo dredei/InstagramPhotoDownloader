@@ -123,7 +123,11 @@ namespace InstagramPhotoDownloader
                 {
                     return "";
                 }
-                return img[ 1 ].GetAttributeValue( "src", "" );
+                if ( img.Count > 1 )
+                {
+                    return img[ 1 ].GetAttributeValue( "src", "" );
+                }
+                return "";
             }
             return "";
         }
